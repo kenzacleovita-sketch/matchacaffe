@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Matcha Mori — Matcha Shop</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f5f7ed;
+            color: #263b2b;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(245, 247, 237, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #dce6d2;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: bold;
+            color: #315c3c;
+        }
+
+        .logo span {
+            color: #88a96c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #39503d;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav ul li a:hover {
+            color: #709653;
+        }
+
+        .cart-btn {
+            border: none;
+            background: #315c3c;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 550px;
+            padding: 70px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background:
+                radial-gradient(circle at 80% 30%, #dbe8c8 0%, transparent 28%),
+                linear-gradient(135deg, #f4f7eb, #e4edda);
+        }
+
+        .hero-text {
+            max-width: 570px;
+        }
+
+        .small-title {
+            display: inline-block;
+            background: #d9e7ca;
+            color: #547344;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(45px, 7vw, 75px);
+            line-height: 1;
+            color: #294c32;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #769957;
+        }
+
+        .hero p {
+            color: #637264;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            max-width: 490px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #315c3c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: #24482d;
+        }
+
+        .btn-secondary {
+            border: 1px solid #aabd9f;
+            color: #456348;
+            background: white;
+        }
+
+        .btn-secondary:hover {
+            background: #edf3e6;
+        }
+
+        .hero-img {
+            width: 390px;
+            height: 390px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 25px 50px rgba(50, 78, 49, 0.18);
+            border: 12px solid rgba(255,255,255,0.7);
+        }
+
+        /* SECTION */
+        section {
+            padding: 75px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            color: #789b60;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: #294c32;
+            margin-top: 7px;
+        }
+
+        .section-title p {
+            color: #718070;
+            margin-top: 10px;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid #e0e8d8;
+            box-shadow: 0 8px 25px rgba(48, 75, 48, 0.06);
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(48, 75, 48, 0.12);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 19px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #88a56f;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .product h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            color: #304d35;
+            margin: 5px 0;
+        }
+
+        .product p {
+            font-size: 13px;
+            color: #7b8578;
+            line-height: 1.5;
+            min-height: 40px;
+        }
+
+        .product-bottom {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #315c3c;
+            font-size: 16px;
+        }
+
+        .add-btn {
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #315c3c;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.1);
+            background: #71975c;
+        }
+
+        /* INFO */
+        .info-section {
+            background: #e5eddb;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.72);
+            padding: 30px;
+            border-radius: 22px;
+            text-align: center;
+        }
+
+        .info-icon {
+            font-size: 38px;
+            margin-bottom: 13px;
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #315c3c;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            color: #657164;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CART */
+        .cart-panel {
+            position: fixed;
+            right: -420px;
+            top: 0;
+            width: 400px;
+            max-width: 95%;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            padding: 25px;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.12);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-panel.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e4e9df;
+            padding-bottom: 18px;
+        }
+
+        .cart-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: #315c3c;
+        }
+
+        .close-cart {
+            border: none;
+            background: #edf3e8;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #cartItems {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #edf0eb;
+        }
+
+        .cart-item img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .cart-info {
+            flex: 1;
+        }
+
+        .cart-info h4 {
+            font-size: 14px;
+            color: #304c35;
+        }
+
+        .cart-info span {
+            font-size: 12px;
+            color: #789078;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 7px;
+        }
+
+        .quantity button {
+            border: none;
+            background: #e7efdf;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #e4e9df;
+            padding-top: 18px;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 17px;
+            color: #315c3c;
+        }
+
+        .checkout {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background: #315c3c;
+            color: white;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .checkout:hover {
+            background: #24482d;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(22, 39, 25, 0.35);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #294c32;
+            color: #dfe9d8;
+            text-align: center;
+            padding: 35px 7%;
+        }
+
+        footer h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            font-size: 13px;
+            opacity: 0.8;
+            margin: 5px;
+        }
+
+        .wa {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 11px 20px;
+            border-radius: 25px;
+            background: #dcebcf;
+            color: #315c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-img {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 50px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-img {
+                width: 260px;
+                height: 260px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Matcha<span>Mori</span> 🍵</div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+
+    <button class="cart-btn" onclick="openCart()">
+        🛒 Keranjang <span id="cartCount">0</span>
+    </button>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <span class="small-title">🍃 Premium Matcha Drinks</span>
+
+        <h1>
+            A Little Cup of
+            <span>Matcha Magic.</span>
+        </h1>
+
+        <p>
+            Nikmati minuman matcha creamy dengan rasa lembut,
+            aroma khas matcha, dan dibuat fresh untuk menemani
+            hari-harimu.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#menu" class="btn btn-primary">
+                Lihat Menu 🍵
+            </a>
+
+            <a href="#about" class="btn btn-secondary">
+                Tentang Kami
+            </a>
+        </div>
+
+    </div>
+
+    <img
+        class="hero-img"
+        src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=85"
+        alt="Matcha Latte"
+    >
+
+</section>
+
+
+<!-- MENU -->
+<section id="menu">
+
+    <div class="section-title">
+        <small>Our Menu</small>
+        <h2>Matcha Favorites 🍵</h2>
+        <p>Pilih matcha favoritmu dan masukkan ke keranjang.</p>
+    </div>
+
+    <div class="products">
+
+        <!-- PRODUCT 1 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Latte"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Signature</span>
+
+                <h3>Classic Matcha Latte</h3>
+
+                <p>
+                    Matcha premium dengan susu creamy
+                    dan rasa earthy yang lembut.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp18.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Classic Matcha Latte',18000,'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=85"
+                alt="Iced Matcha"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Fresh</span>
+
+                <h3>Iced Matcha Milk</h3>
+
+                <p>
+                    Matcha dingin dengan susu creamy
+                    yang cocok diminum kapan saja.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp20.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Iced Matcha Milk',20000,'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Strawberry"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Favorite</span>
+
+                <h3>Matcha Creamy</h3>
+
+                <p>
+                    Perpaduan matcha creamy dengan
+                    foam lembut di bagian atas.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp22.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Matcha Creamy',22000,'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Tea"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Classic</span>
+
+                <h3>Pure Matcha Tea</h3>
+
+                <p>
+                    Matcha dengan rasa autentik,
+                    earthy, fresh, dan ringan.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp15.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Pure Matcha Tea',15000,'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 5 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Cream"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Creamy</span>
+
+                <h3>Matcha Cloud</h3>
+
+                <p>
+                    Matcha latte dengan creamy foam
+                    selembut awan.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp23.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Matcha Cloud',23000,'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 6 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Dessert"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Sweet</span>
+
+                <h3>Matcha Sweet Cream</h3>
+
+                <p>
+                    Matcha manis dengan creamy milk
+                    yang cocok untuk pecinta rasa sweet.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp21.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Matcha Sweet Cream',21000,'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 7 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Coffee"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Fusion</span>
+
+                <h3>Matcha Coffee</h3>
+
+                <p>
+                    Perpaduan unik matcha creamy
+                    dan coffee yang bold.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp24.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Matcha Coffee',24000,'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 8 -->
+        <div class="product">
+
+            <img
+                class="product-img"
+                src="https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=85"
+                alt="Matcha Milk"
+            >
+
+            <div class="product-content">
+
+                <span class="product-category">Best Seller</span>
+
+                <h3>Premium Matcha</h3>
+
+                <p>
+                    Matcha premium dengan susu segar
+                    dan rasa yang smooth.
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">Rp25.000</span>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('Premium Matcha',25000,'https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=300&q=80')">
+                        +
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- INFO -->
+<section class="info-section" id="about">
+
+    <div class="section-title">
+        <small>About Us</small>
+        <h2>Kenapa Matcha Mori?</h2>
+    </div>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <div class="info-icon">🍃</div>
+            <h3>Premium Matcha</h3>
+            <p>
+                Menggunakan matcha pilihan dengan
+                aroma khas dan rasa earthy yang lembut.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">🥛</div>
+            <h3>Fresh Ingredients</h3>
+            <p>
+                Minuman dibuat fresh ketika dipesan
+                sehingga rasanya lebih nikmat.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">💚</div>
+            <h3>Made With Love</h3>
+            <p>
+                Setiap cup dibuat dengan perhatian
+                agar menjadi teman terbaik harimu.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+    <div class="section-title">
+        <small>Visit Us</small>
+        <h2>Matcha Mori</h2>
+        <p>
+            📍 Jl. Matcha No. 12, Indonesia
+            <br>
+            ⏰ Senin - Minggu | 10.00 - 21.00
+        </p>
+
+        <a
+            class="btn btn-primary"
+            style="margin-top:20px;"
+            href="https://wa.me/6287840112123"
+            target="_blank">
+            💬 Order via WhatsApp
+        </a>
+    </div>
+
+</section>
+
+
+<!-- CART OVERLAY -->
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeCart()">
+</div>
+
+
+<!-- CART -->
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+        <h2>Keranjang 🛒</h2>
+
+        <button
+            class="close-cart"
+            onclick="closeCart()">
+            ✕
+        </button>
+
+    </div>
+
+
+    <div id="cartItems">
+
+        <p style="text-align:center;color:#8a9388;margin-top:30px;">
+            Keranjang masih kosong 🍵
+        </p>
+
+    </div>
+
+
+    <div class="cart-footer">
+
+        <div class="total">
+            <span>Total</span>
+            <span id="cartTotal">Rp0</span>
+        </div>
+
+        <button
+            class="checkout"
+            onclick="checkout()">
+            Checkout Sekarang →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h2>Matcha Mori 🍵</h2>
+
+    <p>
+        Aesthetic matcha drinks made with love.
+    </p>
+
+    <p>
+        © 2026 Matcha Mori. All rights reserved.
+    </p>
+
+    <a
+        class="wa"
+        href="https://wa.me/6287840112123"
+        target="_blank">
+        💬 WhatsApp Kami
+    </a>
+
+</footer>
+
+
+<script>
+
+    let cart = [];
+
+
+    function addToCart(name, price, image) {
+
+        const existing = cart.find(item => item.name === name);
+
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+        }
+
+        updateCart();
+
+        openCart();
+    }
+
+
+    function updateCart() {
+
+        const cartItems = document.getElementById("cartItems");
+        const cartCount = document.getElementById("cartCount");
+        const cartTotal = document.getElementById("cartTotal");
+
+        cartItems.innerHTML = "";
+
+        let total = 0;
+        let count = 0;
+
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML = `
+                <p style="text-align:center;color:#8a9388;margin-top:30px;">
+                    Keranjang masih kosong 🍵
+                </p>
+            `;
+
+        }
+
+
+        cart.forEach((item, index) => {
+
+            total += item.price * item.quantity;
+            count += item.quantity;
+
+
+            cartItems.innerHTML += `
+
+                <div class="cart-item">
+
+                    <img src="${item.image}" alt="${item.name}">
+
+                    <div class="cart-info">
+
+                        <h4>${item.name}</h4>
+
+                        <span>
+                            ${formatRupiah(item.price)}
+                        </span>
+
+                        <div class="quantity">
+
+                            <button onclick="changeQuantity(${index}, -1)">
+                                −
+                            </button>
+
+                            <span>${item.quantity}</span>
+
+                            <button onclick="changeQuantity(${index}, 1)">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+
+        cartCount.innerText = count;
+
+        cartTotal.innerText = formatRupiah(total);
+
+    }
+
+
+    function changeQuantity(index, change) {
+
+        cart[index].quantity += change;
+
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+
+        updateCart();
+
+    }
+
+
+    function formatRupiah(number) {
+
+        return new Intl.NumberFormat(
+            'id-ID',
+            {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }
+        ).format(number);
+
+    }
+
+
+    function openCart() {
+
+        document
+            .getElementById("cartPanel")
+            .classList.add("active");
+
+        document
+            .getElementById("overlay")
+            .classList.add("active");
+
+    }
+
+
+    function closeCart() {
+
+        document
+            .getElementById("cartPanel")
+            .classList.remove("active");
+
+        document
+            .getElementById("overlay")
+            .classList.remove("active");
+
+    }
+
+
+    function checkout() {
+
+        if (cart.length === 0) {
+
+            alert("Keranjang kamu masih kosong 🍵");
+
+            return;
+        }
+
+
+        let message =
+            "Halo Matcha Mori!" +
+            "Saya ingin memesan:";
+
+
+        let total = 0;
+
+
+        cart.forEach(item => {
+
+            let subtotal =
+                item.price * item.quantity;
+
+            total += subtotal;
+
+            message +=
+                `• ${item.name} x${item.quantity} = ${formatRupiah(subtotal)}%0A`;
+
+        });
+
+
+        message +=
+            `Total: ${formatRupiah(total)}` +
+            `Terima kasih!`;
+
+
+        const phone = "6287840112123";
+
+
+        window.open(
+            `https://wa.me/${phone}?text=${message}`,
+            "_blank"
+        );
+
+    }
+
+</script>
+
+</body>
+                                  </html>
